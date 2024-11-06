@@ -1,0 +1,59 @@
+# Node modules
+node_modules/
+
+
+backend/data/
+backend/data/*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by testing tools
+coverage/
+.nyc_output/
+
+# dotenv environment variable files
+.env
+.env.*.local
+
+# Build directories for the backend and frontend
+dist/
+build/
+public/build/
+public/dist/
+
+# Cache files for bundlers and compilers
+.cache/
+.eslintcache
+.parcel-cache/
+
+# TypeScript
+*.tsbuildinfo
+
+# Tailwind CSS cache (if generated)
+.tailwind/
+
+# OS generated files (macOS)
+.DS_Store
+
+# IDE settings
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+
+config.ts
+config.js
