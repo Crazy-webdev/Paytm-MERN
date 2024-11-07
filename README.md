@@ -14,7 +14,7 @@ This is a Paytm clone application built using the **MERN** stack (MongoDB, Expre
 
 - **Transactions:**
   - Create and manage transactions (simulated).
-  - View transaction history.
+  - View transaction history(will be released later).
 
 - **Payment Gateway Simulation:**
   - Interface to simulate payments and transactions.
