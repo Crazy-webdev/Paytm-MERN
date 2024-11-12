@@ -146,3 +146,37 @@ userRouter.put("/update",authMiddleware,async(req:Request,res:Response):Promise<
         return;
     }
 })
+
+userRouter.get("/bulk",authMiddleware,async(req:Request,res:Response):Promise<void>=>{
+
+    try{
+        const filter = req.query.filter || "";
+
+    const users = await User.find({
+        $or: [{
+            firstName: {
+                "$regex": filter
+            }
+        }, {
+            lastName: {
+                "$regex": filter
+            }
+        }]
+    })
+
+    res.status(200).json({
+        user: users.map(user => ({
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            _id: user._id
+        }))
+    })
+    }catch(e){
+        console.error("err",e);
+        res.status(500).json({
+            msg:"Server error"
+        })
+        return;
+    }
+})
