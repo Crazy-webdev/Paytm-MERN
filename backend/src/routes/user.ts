@@ -152,24 +152,29 @@ userRouter.get("/bulk",authMiddleware,async(req:Request,res:Response):Promise<vo
     try{
         const filter = req.query.filter || "";
 
-    const users = await User.find({
-        $or: [{
-            firstName: {
-                "$regex": filter
-            }
-        }, {
-            lastName: {
-                "$regex": filter
-            }
-        }]
-    })
+        const users = await User.find({
+            $and: [
+                { _id: { $ne: req.userId } },
+                {
+                    $or: [{
+                        firstName: {
+                            "$regex": filter
+                        }
+                    }, {
+                        lastName: {
+                            "$regex": filter
+                        }
+                    }]
+                }
+            ]
+        });
 
-    res.status(200).json({
-        user: users.map(user => ({
-            username: user.username,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            _id: user._id
+        res.status(200).json({
+            user: users.map(user => ({
+                username: user.username,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                _id: user._id
         }))
     })
     }catch(e){
